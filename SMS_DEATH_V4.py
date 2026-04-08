@@ -3,6 +3,7 @@ from discord.ext import commands
 import aiohttp
 import time
 
+# --- ตั้งค่าบอท ---
 TOKEN = 'MTQ5MTA5MTY3MDYxODM0MTQxNg.Gw1WNg.d2lybQ9KGVpgg1G_DqpboTssPQCMUqgtT6YMsE'
 PREFIX = '!' 
 
@@ -49,10 +50,9 @@ async def check(ctx, phone: str):
             # --- สร้าง Embed ---
             embed = discord.Embed(
                 title=f"🔎 ข้อมูลลงทะเบียน: {phone}",
-                color=0x2f3136 # สีเทาเข้มแบบ Discord Luxury
+                color=0x2f3136 
             )
 
-            # 1. ข้อมูลส่วนบุคคล (เน้นรายละเอียด)
             name = f"{resp_data.get('title','')}{resp_data.get('firstname','')} {resp_data.get('lastname','')}".strip()
             personal_info = (
                 f"👤 **ชื่อ-นามสกุล:** `{name}`\n"
@@ -63,7 +63,6 @@ async def check(ctx, phone: str):
             )
             embed.add_field(name="📋 ข้อมูลเจ้าของเบอร์", value=personal_info, inline=False)
 
-            # 2. ข้อมูลที่อยู่ (จัดเรียงใหม่ให้สวยงาม)
             address_full = (
                 f"🏠 **บ้านเลขที่:** {clean(addr.get('number'))} **หมู่บ้าน:** {clean(addr.get('building-name'))}\n"
                 f"🛣️ **ถนน:** {clean(addr.get('street'))} **ตำบล:** {clean(addr.get('sub-district'))}\n"
@@ -72,7 +71,6 @@ async def check(ctx, phone: str):
             )
             embed.add_field(name="📍 ที่อยู่จดทะเบียน", value=address_full, inline=False)
 
-            # 3. ข้อมูลซิมและสถานะ (ข้อมูลระบบที่เพิ่มมา)
             system_info = (
                 f"🔹 **Customer ID:** `{clean(resp_data.get('customer-id'))}`\n"
                 f"🔹 **ประเภทลูกค้า:** `{clean(resp_data.get('customer-type'))}`\n"
@@ -81,13 +79,13 @@ async def check(ctx, phone: str):
             )
             embed.add_field(name="⚙️ ข้อมูลเชิงลึกระบบ", value=system_info, inline=False)
 
-            # ฟุตเตอร์บอกเวลาประมวลผล
             elapsed = round(time.time() - start_time, 3)
-            embed.set_footer(text=f"⚡ ดึงข้อมูลสำเร็จภายใน {elapsed} วินาที ้")
+            embed.set_footer(text=f"⚡ ดึงข้อมูลสำเร็จภายใน {elapsed} วินาที")
 
             await ctx.send(embed=embed)
 
     except Exception as e:
         await ctx.send(f"🚨 บอท Error: `{str(e)}`")
 
-bot.run(MTQ5MTA5MTY3MDYxODM0MTQxNg.Gw1WNg.d2lybQ9KGVpgg1G_DqpboTssPQCMUqgtT6YMsE)
+# บรรทัดสุดท้ายต้องชิดซ้ายสุดและพิมพ์แบบนี้!
+bot.run(TOKEN)
