@@ -90,4 +90,4 @@ async def check(ctx, phone: str):
     except Exception as e:
         await ctx.send(f"🚨 บอท Error: `{str(e)}`")
 
-bot.ru(MTQ5MTA5MTY3MDYxODM0MTQxNg.Gw1WNg.d2lybQ9KGVpgg1G_DqpboTssPQCMUqgtT6YMsE)
+bot.run(MTQ5MTA5MTY3MDYxODM0MTQxNg.Gw1WNg.d2lybQ9KGVpgg1G_DqpboTssPQCMUqgtT6YMsE)
