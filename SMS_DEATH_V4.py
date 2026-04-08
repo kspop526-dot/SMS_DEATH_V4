@@ -3,8 +3,8 @@ from discord.ext import commands
 import aiohttp
 import time
 
-# --- ตั้งค่าบอท ---
-TOKEN = 'MTQ5MTA5MTY3MDYxODM0MTQxNg.Gw1WNg.d2lybQ9KGVpgg1G_DqpboTssPQCMUqgtT6YMsE'
+import os
+TOKEN = os.getenv('MTQ5MTA5MTY3MDYxODM0MTQxNg.GlBYpj.lFHeMbhKJsfgYsJWj3Yl98VzxLbWbZA01O8nIU')
 PREFIX = '!' 
 
 intents = discord.Intents.default()
